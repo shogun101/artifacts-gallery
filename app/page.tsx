@@ -2,55 +2,79 @@ import { client, isConfigured } from '@/sanity/client'
 import { Sidebar, CardGrid } from '@/components'
 import { artifactsQuery } from '@/lib/queries'
 
-// Mock data for development (remove when Sanity is connected)
+// Sample artifacts with local images
 const mockArtifacts = [
   {
     _id: '1',
-    title: '16TH CENTURY COIN',
-    imageUrl: 'https://placehold.co/440x497/000/333?text=Artifact+1',
-    prompt: 'A hyper-detailed 3D render of a medieval coin with dragon motifs, studio lighting, octane render',
+    title: 'ARTIFACT I',
+    imageUrl: '/artifacts/HorizontalBorder.png',
+    prompt: 'A hyper-detailed 3D render of a decorative border element, ornate baroque style, gold and ivory, studio lighting, octane render',
     sourceType: 'x' as const,
-    sourceUrl: 'https://x.com/example'
+    sourceUrl: 'https://x.com/akshitvrma'
   },
   {
     _id: '2',
-    title: 'WAX SEAL',
-    imageUrl: 'https://placehold.co/440x497/000/333?text=Artifact+2',
-    prompt: 'A photorealistic wax seal with intricate heraldic design, deep red color, dramatic lighting',
-    sourceType: 'web' as const,
-    sourceUrl: 'https://example.com'
+    title: 'ARTIFACT II',
+    imageUrl: '/artifacts/HorizontalBorder-1.png',
+    prompt: 'An intricate horizontal border design with classical motifs, photorealistic rendering, dramatic shadows',
+    sourceType: 'x' as const,
+    sourceUrl: 'https://x.com/akshitvrma'
   },
   {
     _id: '3',
-    title: 'KEYCAP',
-    imageUrl: 'https://placehold.co/440x497/000/333?text=Artifact+3',
-    prompt: 'A custom mechanical keyboard keycap with galaxy design, translucent resin, macro photography',
-    sourceType: 'x' as const,
-    sourceUrl: 'https://x.com/example'
-  },
-  {
-    _id: '4',
-    title: 'PILL CAPSULE',
-    imageUrl: 'https://placehold.co/440x497/000/333?text=Artifact+4',
-    prompt: 'A futuristic pill capsule with bioluminescent contents, glass material, studio lighting',
-    sourceType: 'x' as const,
-    sourceUrl: 'https://x.com/example'
-  },
-  {
-    _id: '5',
-    title: 'BOTTLE CAP',
-    imageUrl: 'https://placehold.co/440x497/000/333?text=Artifact+5',
-    prompt: 'A vintage soda bottle cap with retro typography, weathered metal texture, product photography',
+    title: 'ARTIFACT III',
+    imageUrl: '/artifacts/HorizontalBorder-2.png',
+    prompt: 'A decorative architectural border element, renaissance style, marble and gold leaf, product photography',
     sourceType: 'web' as const,
     sourceUrl: 'https://example.com'
   },
   {
-    _id: '6',
-    title: 'SIGNET RING',
-    imageUrl: 'https://placehold.co/440x497/000/333?text=Artifact+6',
-    prompt: 'An ornate gold signet ring with family crest engraving, baroque style, dramatic shadows',
+    _id: '4',
+    title: 'ARTIFACT IV',
+    imageUrl: '/artifacts/HorizontalBorder-3.png',
+    prompt: 'An ornamental frame border with floral patterns, vintage aesthetic, high detail macro photography',
     sourceType: 'x' as const,
-    sourceUrl: 'https://x.com/example'
+    sourceUrl: 'https://x.com/akshitvrma'
+  },
+  {
+    _id: '5',
+    title: 'ARTIFACT V',
+    imageUrl: '/artifacts/HorizontalBorder-4.png',
+    prompt: 'A minimalist decorative border, geometric patterns, matte finish, studio lighting setup',
+    sourceType: 'x' as const,
+    sourceUrl: 'https://x.com/akshitvrma'
+  },
+  {
+    _id: '6',
+    title: 'ARTIFACT VI',
+    imageUrl: '/artifacts/HorizontalBorder-5.png',
+    prompt: 'An elaborate corner border element, art deco influence, chrome and glass materials, 8k render',
+    sourceType: 'web' as const,
+    sourceUrl: 'https://example.com'
+  },
+  {
+    _id: '7',
+    title: 'ARTIFACT VII',
+    imageUrl: '/artifacts/HorizontalBorder-6.png',
+    prompt: 'A classical frieze border design, Greco-Roman style, weathered stone texture, cinematic lighting',
+    sourceType: 'x' as const,
+    sourceUrl: 'https://x.com/akshitvrma'
+  },
+  {
+    _id: '8',
+    title: 'ARTIFACT VIII',
+    imageUrl: '/artifacts/HorizontalBorder-7.png',
+    prompt: 'An intricate woodcarving border pattern, medieval craftsmanship, oak finish, natural lighting',
+    sourceType: 'x' as const,
+    sourceUrl: 'https://x.com/akshitvrma'
+  },
+  {
+    _id: '9',
+    title: 'ARTIFACT IX',
+    imageUrl: '/artifacts/HorizontalBorder-8.png',
+    prompt: 'A symmetrical decorative border with botanical elements, Victorian era style, sepia tones, archival quality',
+    sourceType: 'x' as const,
+    sourceUrl: 'https://x.com/akshitvrma'
   },
 ]
 
