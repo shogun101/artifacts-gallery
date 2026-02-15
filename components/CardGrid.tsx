@@ -15,7 +15,7 @@ interface CardGridProps {
 
 export function CardGrid({ artifacts }: CardGridProps) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-0 overflow-y-auto">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 overflow-y-auto">
       {artifacts.map((artifact) => (
         <ArtifactCard
           key={artifact._id}

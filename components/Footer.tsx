@@ -1,11 +1,9 @@
-import { BracketText } from './BracketText'
-
 export function Footer() {
   return (
     <div className="flex flex-col gap-footer-gap">
       {/* Footer text */}
       <p className="text-body text-muted">
-        IF YOU MADE <BracketText textClassName="text-muted">OR FOUND</BracketText> A COOL ARTEFACT
+        IF YOU MADE <span className="text-muted">[</span>OR FOUND<span className="text-muted">]</span> A COOL ARTEFACT
       </p>
       
       {/* CTA */}
@@ -13,11 +11,11 @@ export function Footer() {
         href="https://x.com/akshitvrma" 
         target="_blank" 
         rel="noopener noreferrer"
-        className="text-body hover:text-white transition-colors inline-block"
+        className="text-body transition-colors inline-block group/cta"
       >
-        <BracketText textClassName="text-primary">
-          DM ME ON X
-        </BracketText>
+        <span className="text-muted group-hover/cta:text-white transition-colors">[</span>
+        <span className="text-primary group-hover/cta:text-white transition-colors">DM ME ON X</span>
+        <span className="text-muted group-hover/cta:text-white transition-colors">]</span>
       </a>
     </div>
   )

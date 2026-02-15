@@ -22,13 +22,13 @@ export function CopyPromptButton({ prompt }: CopyPromptButtonProps) {
   return (
     <button 
       onClick={handleCopy} 
-      className="uppercase text-body cursor-pointer bg-transparent border-none p-0 hover:opacity-80 transition-opacity"
+      className="group/btn uppercase text-body cursor-pointer bg-transparent border-none p-0 transition-opacity"
     >
-      <span className="text-muted group-hover:text-white transition-colors">[</span>
+      <span className="text-muted group-hover/btn:text-white transition-colors">[</span>
       <span className="text-white">
         {copied ? 'COPIED!' : 'COPY PROMPT'}
       </span>
-      <span className="text-muted group-hover:text-white transition-colors">]</span>
+      <span className="text-muted group-hover/btn:text-white transition-colors">]</span>
     </button>
   )
 }
