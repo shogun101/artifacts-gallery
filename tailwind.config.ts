@@ -13,6 +13,7 @@ const config: Config = {
         'card-border': '#282828',
         'card-border-hover': '#444444',
         'muted': '#888888',
+        'label': '#ABABAB',        // brighter than muted for labels
         'primary': 'rgba(255,255,255,0.88)',
       },
       fontFamily: {
@@ -34,6 +35,29 @@ const config: Config = {
       },
       aspectRatio: {
         'card': '440 / 497',
+      },
+      keyframes: {
+        'fade-in-up': {
+          '0%': { opacity: '0', transform: 'translateY(20px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        'toast-in': {
+          '0%': { opacity: '0', transform: 'translateY(10px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        'toast-out': {
+          '0%': { opacity: '1', transform: 'translateY(0)' },
+          '100%': { opacity: '0', transform: 'translateY(-10px)' },
+        },
+        'shimmer': {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(100%)' },
+        },
+      },
+      animation: {
+        'fade-in-up': 'fade-in-up 0.5s ease-out',
+        'toast-in': 'toast-in 0.3s ease-out',
+        'toast-out': 'toast-out 0.3s ease-in forwards',
       },
     },
   },

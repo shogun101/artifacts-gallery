@@ -94,7 +94,7 @@ export default async function Home() {
   }
 
   return (
-    <main className="flex flex-col 2xl:grid 2xl:grid-cols-[565px_1fr] min-h-screen bg-black font-sans text-body uppercase">
+    <main className="flex flex-col xl:grid xl:grid-cols-[565px_1fr] min-h-screen bg-black font-sans text-body uppercase">
       <Sidebar />
       <CardGrid artifacts={artifacts} />
     </main>
