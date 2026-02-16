@@ -94,9 +94,14 @@ export default async function Home() {
   }
 
   return (
-    <main className="flex flex-col xl:grid xl:grid-cols-[565px_1fr] min-h-screen bg-black font-sans text-body uppercase">
+    <main className="min-h-screen bg-black font-sans text-body uppercase">
+      {/* Sidebar - fixed on mobile, sticky on desktop */}
       <Sidebar />
-      <CardGrid artifacts={artifacts} />
+      
+      {/* Cards - full width on mobile (below fixed sidebar), offset on desktop */}
+      <div className="pt-[100vh] xl:pt-0 xl:ml-[565px]">
+        <CardGrid artifacts={artifacts} />
+      </div>
     </main>
   )
 }

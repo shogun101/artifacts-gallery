@@ -3,7 +3,7 @@ import { Footer } from './Footer'
 
 export function Sidebar() {
   return (
-    <aside className="flex flex-col justify-between p-page-pad bg-black xl:sticky xl:top-0 xl:h-screen overflow-hidden">
+    <aside className="fixed top-0 left-0 w-full xl:w-[565px] h-screen flex flex-col justify-between p-page-pad bg-black z-30">
       <Header />
       <Footer />
     </aside>
