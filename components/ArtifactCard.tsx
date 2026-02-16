@@ -57,7 +57,7 @@ export function ArtifactCard({
 
   return (
     <motion.div 
-      className="relative border border-dashed border-card-border aspect-card bg-black overflow-hidden group"
+      className="relative border-r border-b border-dashed border-card-border aspect-card bg-black overflow-hidden group"
       initial={{ 
         opacity: 0, 
         y: CARD_ANIMATION.initialY 
