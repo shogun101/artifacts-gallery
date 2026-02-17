@@ -64,10 +64,10 @@
 /* ShimmerText component - smooth traveling highlight */
 @keyframes shimmer-text {
   0% {
-    background-position: 100% 0;
+    background-position: 200% center;
   }
   100% {
-    background-position: -100% 0;
+    background-position: -200% center;
   }
 }
 
@@ -75,16 +75,16 @@
   background: linear-gradient(
     90deg,
     #888888 0%,
-    #888888 35%,
+    #888888 40%,
     #ffffff 50%,
-    #888888 65%,
+    #888888 60%,
     #888888 100%
   );
-  background-size: 300% 100%;
+  background-size: 250% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: shimmer-text var(--shimmer-duration, 3s) linear infinite;
+  animation: shimmer-text var(--shimmer-duration, 2.5s) ease-in-out infinite;
 }
 
 * {
