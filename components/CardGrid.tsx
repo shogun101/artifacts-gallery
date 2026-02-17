@@ -29,11 +29,11 @@ export function CardGrid({ artifacts }: CardGridProps) {
 
   // Single DialKit panel for toast animation
   const toastParams = useDialKit('Toast Animation', {
-    bgOpacity: [0.88, 0.5, 1],
+    bgOpacity: [0.75, 0.5, 1],
     blur: [12, 0, 30],
-    inDuration: [0.3, 0.1, 1],
-    outDuration: [0.3, 0.1, 1],
-    displayTime: [2500, 500, 5000],
+    damping: [20, 5, 50],
+    stiffness: [200, 100, 500],
+    displayTime: [1650, 500, 5000],
   })
 
   return (

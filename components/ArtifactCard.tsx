@@ -28,8 +28,8 @@ export interface CardAnimationParams {
 export interface ToastAnimationParams {
   bgOpacity: number
   blur: number
-  inDuration: number
-  outDuration: number
+  damping: number
+  stiffness: number
   displayTime: number
 }
 
@@ -131,8 +131,9 @@ export function ArtifactCard({
             animate={{ y: 0 }}
             exit={{ y: '100%' }}
             transition={{ 
-              duration: toast.inDuration,
-              ease: [0.22, 1, 0.36, 1],
+              type: 'spring',
+              damping: toast.damping,
+              stiffness: toast.stiffness,
             }}
           >
             <span className="text-body text-white uppercase">
