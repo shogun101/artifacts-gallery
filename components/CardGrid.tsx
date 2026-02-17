@@ -25,6 +25,14 @@ export function CardGrid({ artifacts }: CardGridProps) {
     shimmerSpeed: [2, 0.5, 5],
   })
 
+  // Single DialKit panel for toast animation
+  const toastParams = useDialKit('Toast Animation', {
+    bgOpacity: [0.88, 0.5, 1],
+    damping: [25, 5, 50],
+    stiffness: [300, 100, 500],
+    duration: [2500, 500, 5000],
+  })
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 border-l border-t border-dashed border-card-border">
       {artifacts.map((artifact, index) => (
@@ -37,6 +45,7 @@ export function CardGrid({ artifacts }: CardGridProps) {
           sourceUrl={artifact.sourceUrl}
           index={index}
           animationParams={animationParams}
+          toastParams={toastParams}
         />
       ))}
     </div>

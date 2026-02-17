@@ -13,7 +13,6 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useDialKit } from 'dialkit'
 import { CopyPromptButton } from './CopyPromptButton'
 import { SourceIcon } from './SourceIcon'
 
@@ -24,6 +23,13 @@ export interface CardAnimationParams {
   shimmerSpeed: number
 }
 
+export interface ToastAnimationParams {
+  bgOpacity: number
+  damping: number
+  stiffness: number
+  duration: number
+}
+
 interface ArtifactCardProps {
   title: string
   imageUrl: string
@@ -32,6 +38,7 @@ interface ArtifactCardProps {
   sourceUrl: string
   index: number
   animationParams: CardAnimationParams
+  toastParams: ToastAnimationParams
 }
 
 export function ArtifactCard({ 
@@ -42,16 +49,9 @@ export function ArtifactCard({
   sourceUrl, 
   index,
   animationParams: p,
+  toastParams: toast,
 }: ArtifactCardProps) {
   const [showToast, setShowToast] = useState(false)
-
-  // DialKit controls for toast animation
-  const toast = useDialKit('Toast Animation', {
-    bgOpacity: [0.88, 0.5, 1],
-    damping: [25, 5, 50],
-    stiffness: [300, 100, 500],
-    duration: [2500, 500, 5000],
-  })
 
   const handleCopy = () => {
     setShowToast(true)
