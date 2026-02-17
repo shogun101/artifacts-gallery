@@ -21,10 +21,11 @@ export function CardGrid({ artifacts }: CardGridProps) {
   const animationParams = useDialKit('Card Hover', {
     glowBlur: [32, 0, 100],
     glowOpacity: [0.08, 0, 0.3],
-    glowEnabled: true,
-    shimmerEnabled: true,
-    shimmerSpeed: [1.5, 0.5, 4],
-    shimmerOpacity: [0.08, 0.02, 0.2],
+    glowEnabled: false,
+    pulseEnabled: true,
+    pulseDuration: [0.8, 0.3, 2],
+    pulseOpacity: [0.4, 0.1, 0.6],
+    fadeOutDuration: [0.3, 0.1, 1],
   })
 
   // Single DialKit panel for toast animation

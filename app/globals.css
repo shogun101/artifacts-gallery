@@ -18,30 +18,31 @@
   animation: card-fade-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-/* Card pulse effect on hover - subtle brightness */
-@keyframes card-pulse {
+/* Card pulse effect on hover - subtle brightness with fade out */
+@keyframes card-pulse-in {
   0% {
     opacity: 0;
   }
   50% {
-    opacity: var(--shimmer-opacity, 0.08);
+    opacity: var(--pulse-opacity, 0.4);
   }
   100% {
     opacity: 0;
   }
 }
 
-.card-shimmer {
+.card-pulse {
   position: absolute;
   inset: 0;
   background: white;
   opacity: 0;
   pointer-events: none;
   mix-blend-mode: overlay;
+  transition: opacity var(--fade-out-duration, 0.3s) ease-out;
 }
 
-.group:hover .card-shimmer {
-  animation: card-pulse var(--shimmer-speed, 1s) ease-in-out forwards;
+.group:hover .card-pulse {
+  animation: card-pulse-in var(--pulse-duration, 0.8s) ease-in-out forwards;
 }
 
 /* Toast animation */
@@ -56,30 +57,35 @@
 
 /* ShimmerText component - smooth traveling highlight */
 @keyframes shimmer-text {
-  0% {
-    background-position: 100% center;
+  from {
+    mask-position: 150%;
+    -webkit-mask-position: 150%;
   }
-  100% {
-    background-position: 0% center;
+  to {
+    mask-position: -50%;
+    -webkit-mask-position: -50%;
   }
 }
 
 .shimmer-text {
-  display: inline-block;
-  background: linear-gradient(
-    90deg,
-    #888888 0%,
-    #888888 45%,
-    #ffffff 50%,
-    #888888 55%,
-    #888888 100%
-  );
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shimmer-text var(--shimmer-duration, 3s) linear infinite;
-  white-space: nowrap;
+  display: inline;
+  color: #888888;
+  position: relative;
+}
+
+.shimmer-text::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #ffffff;
+  mask-image: linear-gradient(90deg, transparent 0%, #fff 45%, #fff 55%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #fff 45%, #fff 55%, transparent 100%);
+  mask-size: 50% 100%;
+  -webkit-mask-size: 50% 100%;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  animation: shimmer-text 2.5s ease-in-out infinite;
 }
 
 * {

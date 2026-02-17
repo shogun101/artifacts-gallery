@@ -20,9 +20,10 @@ export interface CardAnimationParams {
   glowBlur: number
   glowOpacity: number
   glowEnabled: boolean
-  shimmerEnabled: boolean
-  shimmerSpeed: number
-  shimmerOpacity: number
+  pulseEnabled: boolean
+  pulseDuration: number
+  pulseOpacity: number
+  fadeOutDuration: number
 }
 
 export interface ToastAnimationParams {
@@ -79,8 +80,9 @@ export function ArtifactCard({
       className="relative border-r border-b border-dashed border-card-border aspect-card bg-black overflow-hidden group card-animate"
       style={{ 
         animationDelay,
-        ['--shimmer-speed' as string]: `${p.shimmerSpeed}s`,
-        ['--shimmer-opacity' as string]: p.shimmerOpacity,
+        ['--pulse-duration' as string]: `${p.pulseDuration}s`,
+        ['--pulse-opacity' as string]: p.pulseOpacity,
+        ['--fade-out-duration' as string]: `${p.fadeOutDuration}s`,
       }}
       whileHover={{ 
         boxShadow: hoverGlow,
@@ -106,8 +108,8 @@ export function ArtifactCard({
         loading="lazy"
       />
 
-      {/* Shimmer effect on hover */}
-      {p.shimmerEnabled && <div className="card-shimmer" />}
+      {/* Pulse effect on hover */}
+      {p.pulseEnabled && <div className="card-pulse" />}
 
       {/* Gradient overlay for label readability */}
       <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/90 via-black/50 to-transparent pointer-events-none" />
