@@ -12,15 +12,18 @@
     "@sanity/image-url": "^2.0.3",
     "@sanity/vision": "^3.99.0",
     "agentation": "^2.2.1",
+    "clsx": "^2.1.1",
     "dialkit": "^0.2.1",
     "framer-motion": "^12.34.0",
+    "lucide-react": "^0.574.0",
     "motion": "^12.34.1",
     "next": "14.2.35",
     "next-sanity": "^9.12.3",
     "react": "^18",
     "react-dom": "^18",
     "sanity": "^3.99.0",
-    "styled-components": "^6.3.9"
+    "styled-components": "^6.3.9",
+    "tailwind-merge": "^3.4.1"
   },
   "devDependencies": {
     "@types/node": "^20",

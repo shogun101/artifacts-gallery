@@ -1,4 +1,4 @@
-import { BracketText } from './BracketText'
+import { TextScramble } from './motion-primitives/text-scramble'
 
 export function Header() {
   return (
@@ -8,11 +8,18 @@ export function Header() {
         .* MAKE SURE TO CHECKOUT THE CREATORS *.
       </p>
       
-      {/* Headline */}
+      {/* Headline with scramble effect */}
       <h1 className="text-headline">
-        <BracketText textClassName="text-primary">
+        <span className="text-muted">[</span>
+        <TextScramble 
+          as="span" 
+          className="text-primary"
+          duration={0.8}
+          speed={0.04}
+        >
           A LIBRARY OF BEAUTIFULLY DIRECTED BRAND COMPONENTS BROUGHT TO LIFE USING AI
-        </BracketText>
+        </TextScramble>
+        <span className="text-muted">]</span>
       </h1>
     </div>
   )
