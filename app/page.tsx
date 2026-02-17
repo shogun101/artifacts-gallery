@@ -98,8 +98,8 @@ export default async function Home() {
       {/* Sidebar - fixed on mobile, sticky on desktop */}
       <Sidebar />
       
-      {/* Cards - full width on mobile (below fixed sidebar), offset on desktop */}
-      <div className="pt-[100vh] xl:pt-0 xl:ml-[565px]">
+      {/* Cards - below sidebar on mobile, offset on desktop */}
+      <div className="xl:ml-[565px]">
         <CardGrid artifacts={artifacts} />
       </div>
     </main>
