@@ -19,15 +19,18 @@ import { SourceIcon } from './SourceIcon'
 export interface CardAnimationParams {
   glowBlur: number
   glowOpacity: number
-  hoverDuration: number
+  glowEnabled: boolean
+  shimmerEnabled: boolean
   shimmerSpeed: number
+  shimmerOpacity: number
 }
 
 export interface ToastAnimationParams {
   bgOpacity: number
-  damping: number
-  stiffness: number
-  duration: number
+  blur: number
+  inDuration: number
+  outDuration: number
+  displayTime: number
 }
 
 interface ArtifactCardProps {
@@ -60,14 +63,16 @@ export function ArtifactCard({
   // Auto-hide toast
   useEffect(() => {
     if (showToast) {
-      const timer = setTimeout(() => setShowToast(false), toast.duration)
+      const timer = setTimeout(() => setShowToast(false), toast.displayTime)
       return () => clearTimeout(timer)
     }
-  }, [showToast, toast.duration])
+  }, [showToast, toast.displayTime])
 
   // Stagger delay: 50ms per card
   const animationDelay = `${index * 0.05}s`
-  const hoverGlow = `0 8px ${p.glowBlur}px rgba(255, 255, 255, ${p.glowOpacity})`
+  const hoverGlow = p.glowEnabled 
+    ? `0 8px ${p.glowBlur}px rgba(255, 255, 255, ${p.glowOpacity})` 
+    : 'none'
 
   return (
     <motion.div 
@@ -75,11 +80,12 @@ export function ArtifactCard({
       style={{ 
         animationDelay,
         ['--shimmer-speed' as string]: `${p.shimmerSpeed}s`,
+        ['--shimmer-opacity' as string]: p.shimmerOpacity,
       }}
       whileHover={{ 
         boxShadow: hoverGlow,
       }}
-      transition={{ duration: p.hoverDuration }}
+      transition={{ duration: 0.2 }}
     >
       {/* Source icon with tooltip */}
       <a
@@ -101,7 +107,7 @@ export function ArtifactCard({
       />
 
       {/* Shimmer effect on hover */}
-      <div className="card-shimmer" />
+      {p.shimmerEnabled && <div className="card-shimmer" />}
 
       {/* Gradient overlay for label readability */}
       <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/90 via-black/50 to-transparent pointer-events-none" />
@@ -116,12 +122,18 @@ export function ArtifactCard({
       <AnimatePresence>
         {showToast && (
           <motion.div
-            className="absolute inset-0 backdrop-blur-md flex items-center justify-center z-30"
-            style={{ backgroundColor: `rgba(0, 0, 0, ${toast.bgOpacity})` }}
+            className="absolute inset-0 flex items-center justify-center z-30"
+            style={{ 
+              backgroundColor: `rgba(0, 0, 0, ${toast.bgOpacity})`,
+              backdropFilter: `blur(${toast.blur}px)`,
+            }}
             initial={{ y: '100%' }}
             animate={{ y: 0 }}
             exit={{ y: '100%' }}
-            transition={{ type: 'spring', damping: toast.damping, stiffness: toast.stiffness }}
+            transition={{ 
+              duration: toast.inDuration,
+              ease: [0.22, 1, 0.36, 1],
+            }}
           >
             <span className="text-body text-white uppercase">
               <span className="text-muted">[</span>

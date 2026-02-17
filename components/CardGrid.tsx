@@ -18,19 +18,22 @@ interface CardGridProps {
 
 export function CardGrid({ artifacts }: CardGridProps) {
   // Single DialKit panel for all card animations
-  const animationParams = useDialKit('Card Animation', {
+  const animationParams = useDialKit('Card Hover', {
     glowBlur: [32, 0, 100],
     glowOpacity: [0.08, 0, 0.3],
-    hoverDuration: [0.2, 0.05, 1],
-    shimmerSpeed: [2, 0.5, 5],
+    glowEnabled: true,
+    shimmerEnabled: true,
+    shimmerSpeed: [1.5, 0.5, 4],
+    shimmerOpacity: [0.08, 0.02, 0.2],
   })
 
   // Single DialKit panel for toast animation
   const toastParams = useDialKit('Toast Animation', {
     bgOpacity: [0.88, 0.5, 1],
-    damping: [25, 5, 50],
-    stiffness: [300, 100, 500],
-    duration: [2500, 500, 5000],
+    blur: [12, 0, 30],
+    inDuration: [0.3, 0.1, 1],
+    outDuration: [0.3, 0.1, 1],
+    displayTime: [2500, 500, 5000],
   })
 
   return (

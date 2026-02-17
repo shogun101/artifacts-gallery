@@ -18,13 +18,13 @@
   animation: card-fade-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-/* Card shimmer effect on hover */
+/* Card shimmer effect on hover - single pass */
 @keyframes shimmer {
   0% {
-    background-position: -200% 0;
+    background-position: 100% 0;
   }
   100% {
-    background-position: 200% 0;
+    background-position: -100% 0;
   }
 }
 
@@ -35,20 +35,19 @@
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.03) 25%,
-    rgba(255, 255, 255, 0.08) 50%,
-    rgba(255, 255, 255, 0.03) 75%,
+    transparent 35%,
+    rgba(255, 255, 255, var(--shimmer-opacity, 0.08)) 50%,
+    transparent 65%,
     transparent 100%
   );
-  background-size: 200% 100%;
-  background-position: -200% 0;
+  background-size: 300% 100%;
+  background-position: 100% 0;
   pointer-events: none;
-  transition: opacity 0.3s ease;
 }
 
 .group:hover .card-shimmer {
   opacity: 1;
-  animation: shimmer var(--shimmer-speed, 2s) ease-in-out forwards;
+  animation: shimmer var(--shimmer-speed, 1.5s) ease-out forwards;
 }
 
 /* Toast animation */
