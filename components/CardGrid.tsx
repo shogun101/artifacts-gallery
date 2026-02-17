@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useCallback } from 'react'
+import { useDialKit } from 'dialkit'
 import { ArtifactCard } from './ArtifactCard'
 import { Toast } from './Toast'
 
@@ -19,6 +20,14 @@ interface CardGridProps {
 
 export function CardGrid({ artifacts }: CardGridProps) {
   const [toast, setToast] = useState<string | null>(null)
+
+  // Single DialKit panel for all card animations
+  const animationParams = useDialKit('Card Animation', {
+    glowBlur: [32, 0, 100],
+    glowOpacity: [0.08, 0, 0.3],
+    hoverDuration: [0.2, 0.05, 1],
+    shimmerSpeed: [2, 0.5, 5],
+  })
 
   const handleCopy = useCallback((title: string) => {
     setToast(`COPIED PROMPT FOR ${title}`)
@@ -40,6 +49,7 @@ export function CardGrid({ artifacts }: CardGridProps) {
             sourceType={artifact.sourceType}
             sourceUrl={artifact.sourceUrl}
             index={index}
+            animationParams={animationParams}
             onCopy={handleCopy}
           />
         ))}

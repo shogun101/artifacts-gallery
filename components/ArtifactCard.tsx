@@ -11,9 +11,15 @@
  * ───────────────────────────────────────────────────────── */
 
 import { motion } from 'framer-motion'
-import { useDialKit } from 'dialkit'
 import { CopyPromptButton } from './CopyPromptButton'
 import { SourceIcon } from './SourceIcon'
+
+export interface CardAnimationParams {
+  glowBlur: number
+  glowOpacity: number
+  hoverDuration: number
+  shimmerSpeed: number
+}
 
 interface ArtifactCardProps {
   title: string
@@ -22,6 +28,7 @@ interface ArtifactCardProps {
   sourceType: 'x' | 'web'
   sourceUrl: string
   index: number
+  animationParams: CardAnimationParams
   onCopy?: (title: string) => void
 }
 
@@ -32,16 +39,9 @@ export function ArtifactCard({
   sourceType, 
   sourceUrl, 
   index,
+  animationParams: p,
   onCopy 
 }: ArtifactCardProps) {
-  // DialKit controls for animation tweaking
-  const p = useDialKit('Card Animation', {
-    glowBlur: [32, 0, 100],
-    glowOpacity: [0.08, 0, 0.3],
-    hoverDuration: [0.2, 0.05, 1],
-    shimmerSpeed: [2, 0.5, 5],
-  })
-  
   const handleCopy = () => {
     onCopy?.(title)
   }
