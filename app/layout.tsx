@@ -1,7 +1,9 @@
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
+import "dialkit/styles.css"
 import { Agentation } from "agentation"
+import { DialRoot } from "dialkit"
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -22,7 +24,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased bg-black`}>
-        {children}
+        <DialRoot>
+          {children}
+        </DialRoot>
         {process.env.NODE_ENV === "development" && <Agentation />}
       </body>
     </html>
