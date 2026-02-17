@@ -14,17 +14,6 @@ import { motion } from 'framer-motion'
 import { CopyPromptButton } from './CopyPromptButton'
 import { SourceIcon } from './SourceIcon'
 
-/* Card entrance animation */
-const CARD_ANIMATION = {
-  initialY: 20,           // px below final position
-  staggerDelay: 0.05,     // seconds between each card (50ms)
-  spring: { 
-    type: "spring" as const, 
-    stiffness: 300, 
-    damping: 30 
-  },
-}
-
 /* Hover glow effect */
 const HOVER = {
   glow: '0 0 0 1px #444444, 0 8px 32px rgba(255, 255, 255, 0.06)',
@@ -37,7 +26,6 @@ interface ArtifactCardProps {
   prompt: string
   sourceType: 'x' | 'web'
   sourceUrl: string
-  index: number
   onCopy?: (title: string) => void
 }
 
@@ -47,7 +35,6 @@ export function ArtifactCard({
   prompt, 
   sourceType, 
   sourceUrl, 
-  index,
   onCopy 
 }: ArtifactCardProps) {
   
