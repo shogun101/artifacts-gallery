@@ -28,10 +28,6 @@
   }
 }
 
-.group:hover .card-shimmer {
-  opacity: 1;
-}
-
 .card-shimmer {
   position: absolute;
   inset: 0;
@@ -45,9 +41,14 @@
     transparent 100%
   );
   background-size: 200% 100%;
-  animation: shimmer var(--shimmer-speed, 2s) ease-in-out infinite;
+  background-position: -200% 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
+}
+
+.group:hover .card-shimmer {
+  opacity: 1;
+  animation: shimmer var(--shimmer-speed, 2s) ease-in-out forwards;
 }
 
 /* Toast animation */
