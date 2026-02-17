@@ -29,9 +29,9 @@ const config: Config = {
         'header-gap': '32px',
         'footer-gap': '16px',
         'card-label-px': '20px',
-        'icon-x': '17px',
-        'icon-y': '21px',
-        'label-bottom': '35px',
+        'icon-x': '20px',
+        'icon-y': '20px',
+        'label-bottom': '20px',
       },
       aspectRatio: {
         'card': '440 / 497',

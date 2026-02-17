@@ -14,9 +14,9 @@ import { motion } from 'framer-motion'
 import { CopyPromptButton } from './CopyPromptButton'
 import { SourceIcon } from './SourceIcon'
 
-/* Hover glow effect */
+/* Hover glow effect - subtle glow only, keep dashed border */
 const HOVER = {
-  glow: '0 0 0 1px #444444, 0 8px 32px rgba(255, 255, 255, 0.06)',
+  glow: '0 8px 32px rgba(255, 255, 255, 0.08)',
   transition: { duration: 0.2 },
 }
 
@@ -53,7 +53,6 @@ export function ArtifactCard({
       style={{ animationDelay }}
       whileHover={{ 
         boxShadow: HOVER.glow,
-        borderColor: '#444444',
       }}
       transition={HOVER.transition}
     >
@@ -75,6 +74,9 @@ export function ArtifactCard({
         className="absolute inset-0 w-full h-full object-cover"
         loading="lazy"
       />
+
+      {/* Shimmer effect on hover */}
+      <div className="card-shimmer" />
 
       {/* Gradient overlay for label readability */}
       <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/90 via-black/50 to-transparent pointer-events-none" />

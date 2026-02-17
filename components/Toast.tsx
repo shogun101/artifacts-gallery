@@ -41,12 +41,15 @@ export function Toast({ message, onClose }: ToastProps) {
   return (
     <div 
       className={`
-        fixed bottom-8 left-1/2 -translate-x-1/2 z-50
-        px-6 py-3 bg-white/10 backdrop-blur-md
-        border border-white/20 rounded-lg
-        text-body text-white
-        ${isExiting ? 'animate-toast-out' : 'animate-toast-in'}
+        fixed bottom-0 left-0 right-0 z-50
+        px-6 py-4 bg-black/[0.88] backdrop-blur-md
+        text-body text-white uppercase
+        transition-transform duration-300 ease-out
+        ${isExiting ? 'translate-y-full' : 'translate-y-0'}
       `}
+      style={{ 
+        animation: isExiting ? undefined : 'toast-slide-up 0.3s ease-out'
+      }}
     >
       <span className="text-muted">[</span>
       <span className="text-white">{message}</span>
