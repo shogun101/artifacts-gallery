@@ -94,7 +94,7 @@ export function ArtifactCard({
         href={sourceUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="absolute top-icon-y left-icon-x z-20 opacity-60 group-hover:opacity-100 transition-opacity"
+        className="absolute top-icon-y left-icon-x z-20 opacity-60"
         title={sourceType === 'x' ? 'View on X' : 'View source'}
       >
         <SourceIcon type={sourceType} />
