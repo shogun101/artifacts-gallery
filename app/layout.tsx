@@ -24,9 +24,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased bg-black`}>
-        <DialRoot>
-          {children}
-        </DialRoot>
+        {children}
+        <DialRoot />
         {process.env.NODE_ENV === "development" && <Agentation />}
       </body>
     </html>
