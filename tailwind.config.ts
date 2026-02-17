@@ -10,7 +10,7 @@ const config: Config = {
     extend: {
       colors: {
         'page': '#000000',
-        'card-border': '#282828',
+        'card-border': 'rgba(255, 255, 255, 0.12)',
         'card-border-hover': '#444444',
         'muted': '#888888',
         'label': '#ABABAB',        // brighter than muted for labels

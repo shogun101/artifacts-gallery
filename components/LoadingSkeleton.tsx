@@ -13,7 +13,7 @@ export function LoadingSkeleton({ count = 6 }: { count?: number }) {
       {Array.from({ length: count }).map((_, i) => (
         <div 
           key={i}
-          className="relative border border-dashed border-card-border aspect-card bg-black overflow-hidden animate-pulse"
+          className="relative border border-solid border-card-border aspect-card bg-black overflow-hidden animate-pulse"
         >
           {/* Shimmer gradient */}
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full animate-[shimmer_2s_infinite]" />
