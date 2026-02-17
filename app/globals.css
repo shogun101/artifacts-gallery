@@ -61,30 +61,30 @@
   }
 }
 
-/* ShimmerText component */
+/* ShimmerText component - smooth traveling highlight */
 @keyframes shimmer-text {
   0% {
-    background-position: -100% 0;
+    background-position: 100% 0;
   }
   100% {
-    background-position: 200% 0;
+    background-position: -100% 0;
   }
 }
 
 .shimmer-text {
   background: linear-gradient(
     90deg,
-    currentColor 0%,
-    currentColor 40%,
-    rgba(255, 255, 255, 0.9) 50%,
-    currentColor 60%,
-    currentColor 100%
+    #888888 0%,
+    #888888 35%,
+    #ffffff 50%,
+    #888888 65%,
+    #888888 100%
   );
-  background-size: 200% 100%;
+  background-size: 300% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: shimmer-text var(--shimmer-duration, 2s) ease-in-out infinite;
+  animation: shimmer-text var(--shimmer-duration, 3s) linear infinite;
 }
 
 * {

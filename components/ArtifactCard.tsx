@@ -13,6 +13,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useDialKit } from 'dialkit'
 import { CopyPromptButton } from './CopyPromptButton'
 import { SourceIcon } from './SourceIcon'
 
@@ -44,17 +45,25 @@ export function ArtifactCard({
 }: ArtifactCardProps) {
   const [showToast, setShowToast] = useState(false)
 
+  // DialKit controls for toast animation
+  const toast = useDialKit('Toast Animation', {
+    bgOpacity: [0.88, 0.5, 1],
+    damping: [25, 5, 50],
+    stiffness: [300, 100, 500],
+    duration: [2500, 500, 5000],
+  })
+
   const handleCopy = () => {
     setShowToast(true)
   }
 
-  // Auto-hide toast after 2.5s
+  // Auto-hide toast
   useEffect(() => {
     if (showToast) {
-      const timer = setTimeout(() => setShowToast(false), 2500)
+      const timer = setTimeout(() => setShowToast(false), toast.duration)
       return () => clearTimeout(timer)
     }
-  }, [showToast])
+  }, [showToast, toast.duration])
 
   // Stagger delay: 50ms per card
   const animationDelay = `${index * 0.05}s`
@@ -107,11 +116,12 @@ export function ArtifactCard({
       <AnimatePresence>
         {showToast && (
           <motion.div
-            className="absolute inset-0 bg-black/[0.88] backdrop-blur-md flex items-center justify-center z-30"
+            className="absolute inset-0 backdrop-blur-md flex items-center justify-center z-30"
+            style={{ backgroundColor: `rgba(0, 0, 0, ${toast.bgOpacity})` }}
             initial={{ y: '100%' }}
             animate={{ y: 0 }}
             exit={{ y: '100%' }}
-            transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+            transition={{ type: 'spring', damping: toast.damping, stiffness: toast.stiffness }}
           >
             <span className="text-body text-white uppercase">
               <span className="text-muted">[</span>
