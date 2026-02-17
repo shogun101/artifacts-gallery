@@ -26,6 +26,7 @@ interface ArtifactCardProps {
   prompt: string
   sourceType: 'x' | 'web'
   sourceUrl: string
+  index: number
   onCopy?: (title: string) => void
 }
 
@@ -35,6 +36,7 @@ export function ArtifactCard({
   prompt, 
   sourceType, 
   sourceUrl, 
+  index,
   onCopy 
 }: ArtifactCardProps) {
   
@@ -42,9 +44,13 @@ export function ArtifactCard({
     onCopy?.(title)
   }
 
+  // Stagger delay: 50ms per card
+  const animationDelay = `${index * 0.05}s`
+
   return (
     <motion.div 
-      className="relative border-r border-b border-dashed border-card-border aspect-card bg-black overflow-hidden group"
+      className="relative border-r border-b border-dashed border-card-border aspect-card bg-black overflow-hidden group card-animate"
+      style={{ animationDelay }}
       whileHover={{ 
         boxShadow: HOVER.glow,
         borderColor: '#444444',
