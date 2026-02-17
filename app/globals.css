@@ -87,6 +87,11 @@
   padding: 0;
 }
 
+/* Force solid borders on card grid */
+.border-solid {
+  border-style: solid !important;
+}
+
 html, body {
   background: #000000;
   color: #ffffff;
