@@ -10,10 +10,7 @@ export function ShimmerText({
   className = '' 
 }: ShimmerTextProps) {
   return (
-    <span
-      className={`shimmer-text ${className}`}
-      data-text={children}
-    >
+    <span className={`shimmer-text ${className}`}>
       {children}
     </span>
   )

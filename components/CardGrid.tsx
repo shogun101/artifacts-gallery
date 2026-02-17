@@ -38,7 +38,7 @@ export function CardGrid({ artifacts }: CardGridProps) {
   })
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 -m-px">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 border-l border-t border-dashed border-card-border">
       {artifacts.map((artifact, index) => (
         <ArtifactCard
           key={artifact._id}

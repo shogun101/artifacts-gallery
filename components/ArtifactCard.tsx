@@ -77,7 +77,7 @@ export function ArtifactCard({
 
   return (
     <motion.div 
-      className="relative border border-dashed border-card-border aspect-card bg-black overflow-hidden group card-animate"
+      className="relative border-r border-b border-dashed border-card-border aspect-card bg-black overflow-hidden group card-animate"
       style={{ 
         animationDelay,
         ['--pulse-duration' as string]: `${p.pulseDuration}s`,
