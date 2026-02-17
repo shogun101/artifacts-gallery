@@ -11,14 +11,9 @@
  * ───────────────────────────────────────────────────────── */
 
 import { motion } from 'framer-motion'
+import { useDialKit } from 'dialkit'
 import { CopyPromptButton } from './CopyPromptButton'
 import { SourceIcon } from './SourceIcon'
-
-/* Hover glow effect - subtle glow only, keep dashed border */
-const HOVER = {
-  glow: '0 8px 32px rgba(255, 255, 255, 0.08)',
-  transition: { duration: 0.2 },
-}
 
 interface ArtifactCardProps {
   title: string
@@ -39,6 +34,13 @@ export function ArtifactCard({
   index,
   onCopy 
 }: ArtifactCardProps) {
+  // DialKit controls for animation tweaking
+  const p = useDialKit('Card Animation', {
+    glowBlur: [32, 0, 100],
+    glowOpacity: [0.08, 0, 0.3],
+    hoverDuration: [0.2, 0.05, 1],
+    shimmerSpeed: [2, 0.5, 5],
+  })
   
   const handleCopy = () => {
     onCopy?.(title)
@@ -46,15 +48,19 @@ export function ArtifactCard({
 
   // Stagger delay: 50ms per card
   const animationDelay = `${index * 0.05}s`
+  const hoverGlow = `0 8px ${p.glowBlur}px rgba(255, 255, 255, ${p.glowOpacity})`
 
   return (
     <motion.div 
       className="relative border-r border-b border-dashed border-card-border aspect-card bg-black overflow-hidden group card-animate"
-      style={{ animationDelay }}
-      whileHover={{ 
-        boxShadow: HOVER.glow,
+      style={{ 
+        animationDelay,
+        ['--shimmer-speed' as string]: `${p.shimmerSpeed}s`,
       }}
-      transition={HOVER.transition}
+      whileHover={{ 
+        boxShadow: hoverGlow,
+      }}
+      transition={{ duration: p.hoverDuration }}
     >
       {/* Source icon with tooltip */}
       <a
