@@ -58,23 +58,11 @@ export function ArtifactCard({
   return (
     <motion.div 
       className="relative border-r border-b border-dashed border-card-border aspect-card bg-black overflow-hidden group"
-      initial={{ 
-        opacity: 0, 
-        y: CARD_ANIMATION.initialY 
-      }}
-      whileInView={{ 
-        opacity: 1, 
-        y: 0 
-      }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ 
-        ...CARD_ANIMATION.spring, 
-        delay: index * CARD_ANIMATION.staggerDelay 
-      }}
       whileHover={{ 
         boxShadow: HOVER.glow,
         borderColor: '#444444',
       }}
+      transition={HOVER.transition}
     >
       {/* Source icon with tooltip */}
       <a
