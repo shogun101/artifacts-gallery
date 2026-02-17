@@ -8,9 +8,11 @@
  *    0ms   card waiting (opacity 0, y +20px)
  *   50ms   card fades in, slides up (staggered by index × 50ms)
  *  hover   glow appears, border brightens (no scale)
+ *  copy    toast overlay slides up from bottom, covers card
  * ───────────────────────────────────────────────────────── */
 
-import { motion } from 'framer-motion'
+import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { CopyPromptButton } from './CopyPromptButton'
 import { SourceIcon } from './SourceIcon'
 
@@ -29,7 +31,6 @@ interface ArtifactCardProps {
   sourceUrl: string
   index: number
   animationParams: CardAnimationParams
-  onCopy?: (title: string) => void
 }
 
 export function ArtifactCard({ 
@@ -40,11 +41,20 @@ export function ArtifactCard({
   sourceUrl, 
   index,
   animationParams: p,
-  onCopy 
 }: ArtifactCardProps) {
+  const [showToast, setShowToast] = useState(false)
+
   const handleCopy = () => {
-    onCopy?.(title)
+    setShowToast(true)
   }
+
+  // Auto-hide toast after 2.5s
+  useEffect(() => {
+    if (showToast) {
+      const timer = setTimeout(() => setShowToast(false), 2500)
+      return () => clearTimeout(timer)
+    }
+  }, [showToast])
 
   // Stagger delay: 50ms per card
   const animationDelay = `${index * 0.05}s`
@@ -92,6 +102,25 @@ export function ArtifactCard({
         <span className="text-label text-body">{title}</span>
         <CopyPromptButton prompt={prompt} onCopy={handleCopy} />
       </div>
+
+      {/* Toast overlay - slides up from bottom, covers entire card */}
+      <AnimatePresence>
+        {showToast && (
+          <motion.div
+            className="absolute inset-0 bg-black/[0.88] backdrop-blur-md flex items-center justify-center z-30"
+            initial={{ y: '100%' }}
+            animate={{ y: 0 }}
+            exit={{ y: '100%' }}
+            transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+          >
+            <span className="text-body text-white uppercase">
+              <span className="text-muted">[</span>
+              COPIED
+              <span className="text-muted">]</span>
+            </span>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   )
 }
